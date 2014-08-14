@@ -5,3 +5,4 @@ This module allows you to use MySQL to store and collect data for your game mode
 How to Install?
 =========
 Simply place the 'miv-mysql.dll' file in the 'modules' folder and the 'libmysql.dll' file in the root server folder.
+Then add the miv-mysql module in the server configs (multiv_server.conf).
