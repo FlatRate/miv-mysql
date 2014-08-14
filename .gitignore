@@ -13,6 +13,7 @@
 *.la
 *.a
 *.lib
+!libmysql.lib
 
 # Executables
 *.exe
