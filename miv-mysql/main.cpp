@@ -45,7 +45,7 @@ EXPORT bool InitializeModule(SDK::ModuleData* data)
 {
 	SDK::ScriptClass* mysql = data->CreateClass("mysql");
 	
-	mysql->AddStaticFunction("debug", (fnScriptFunction)plugin_mysql_debug, "i");
+	mysql->AddStaticFunction("debug", (fnScriptFunction)plugin_mysql_debug, "b");
 	mysql->AddStaticFunction("connect", (fnScriptFunction)plugin_mysql_connect, "ssss");
 	mysql->AddStaticFunction("close", (fnScriptFunction)plugin_mysql_close, "i");
 	mysql->AddStaticFunction("errno", (fnScriptFunction)plugin_mysql_errno, "i");
