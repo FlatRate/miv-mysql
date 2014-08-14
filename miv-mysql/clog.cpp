@@ -28,19 +28,34 @@ FILE* cLog::File = NULL;
 
 void cLog::Initialise()
 {
-	if(File)
+	if(!isOpen())
 	{
-		return;
+		File = fopen("mysql_debug.log", "a");
+		if(File)
+		{
+			cLog::Print("Debug Started",true);
+		}
+		else
+		{
+			printf("Failed to create \"mysql_debug.log\" .");
+		}
 	}
-	File = fopen("mysql_debug.log", "w");
 }
 
 void cLog::Close()
 {
-	if(File)
+	if(isOpen())
 	{
+		Print("Debug Stoped",true);
+		fflush(File);
 		fclose(File);
+		File=NULL;
 	}
+}
+
+bool cLog::isOpen()
+{
+	return File!=NULL;
 }
 
 void cLog::Print(const char* string, bool logConsole)
