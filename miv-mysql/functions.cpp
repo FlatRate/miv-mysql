@@ -31,13 +31,15 @@
 
 SDK::ScriptArgument* plugin_mysql_debug(SDK::ScriptArguments* pArugments)
 {
-	int debug = pArugments->GetInteger(0);
-
-	if(debug)
+	bool debug=pArugments->GetBool(0);
+	if(debug!=cLog::isOpen())
 	{
+		if(debug)
 		cLog::Initialise();
+		else
+		cLog::Close();
 	}
-	return new CReturnValue(1);
+	return new CReturnValue();
 }
 
 SDK::ScriptArgument* plugin_mysql_connect(SDK::ScriptArguments* pArugments)
