@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.h" />
+    <ClInclude Include="clog.h" />
     <ClInclude Include="mysql-handle-manager.h" />
     <ClInclude Include="mysql-handle.h" />
     <ClInclude Include="SDK\CReturnValue.h" />
