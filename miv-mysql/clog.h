@@ -28,6 +28,7 @@ class cLog
 	public:
 		static void Initialise();
 		static void Close();
+		static bool isOpen();
 
 		static void Print(const char* string, bool logConsole);
 		static void PrintFormat(const char* string, ...);
