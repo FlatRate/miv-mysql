@@ -34,5 +34,6 @@ SDK::ScriptArgument* plugin_mysql_free_result(SDK::ScriptArguments* pArugments);
 SDK::ScriptArgument* plugin_mysql_num_rows(SDK::ScriptArguments* pArugments);
 SDK::ScriptArgument* plugin_mysql_num_fields(SDK::ScriptArguments* pArugments);
 SDK::ScriptArgument* plugin_mysql_fetch_row(SDK::ScriptArguments* pArugments);
+SDK::ScriptArgument* plugin_mysql_fetch_row_assoc(SDK::ScriptArguments* pArugments);
 SDK::ScriptArgument* plugin_mysql_fetch_field_row(SDK::ScriptArguments* pArugments);
 SDK::ScriptArgument* plugin_mysql_escape_string(SDK::ScriptArguments* pArugments);
