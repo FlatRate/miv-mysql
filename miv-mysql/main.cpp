@@ -56,6 +56,7 @@ EXPORT bool InitializeModule(SDK::ModuleData* data)
 	mysql->AddStaticFunction("num_rows", (fnScriptFunction)plugin_mysql_num_rows, "i");
 	mysql->AddStaticFunction("num_fields", (fnScriptFunction)plugin_mysql_num_fields, "i");
 	mysql->AddStaticFunction("fetch_row", (fnScriptFunction)plugin_mysql_fetch_row, "i");
+	mysql->AddStaticFunction("fetch_row_assoc", (fnScriptFunction)plugin_mysql_fetch_row, "i");
 	mysql->AddStaticFunction("fetch_field_row", (fnScriptFunction)plugin_mysql_fetch_field_row, "ii");
 	mysql->AddStaticFunction("escape_string", (fnScriptFunction)plugin_mysql_escape_string, "is");
 	return true;
