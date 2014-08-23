@@ -187,6 +187,19 @@ SDK::ScriptArgument* plugin_mysql_fetch_row(SDK::ScriptArguments* pArugments)
 	return new CReturnValue(handle->fetchResultRow());
 }
 
+SDK::ScriptArgument* plugin_mysql_fetch_row_assoc(SDK::ScriptArguments* pArugments)
+{
+	int id = pArugments->GetInteger(0);
+	
+	MySQLHandle* handle = HandleManager::GetHandle(id);
+
+	if (handle == NULL)
+	{
+		return new CReturnValue(-1);
+	}
+	return new CReturnValue(handle->fetchResultRowAssoc());
+}
+
 SDK::ScriptArgument* plugin_mysql_fetch_field_row(SDK::ScriptArguments* pArugments)
 {
 	int id = pArugments->GetInteger(0);
