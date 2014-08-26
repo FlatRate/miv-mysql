@@ -179,6 +179,75 @@ bool MySQLHandle::fetchResultRow()
 	else return true;
 }
 
+SDK::ScriptArguments* MySQLHandle::fetchResultRowAssoc()
+{
+	if (connection == NULL || storedResult == NULL)
+	{
+		cLog::PrintFormatConsole("(%i) ERROR: mysql_fetch_result_assoc() - Connection or result was NULL", handleId);
+		return nullptr;
+	}
+
+	storedRow = mysql_fetch_row(storedResult);
+	if (storedRow == NULL) return nullptr;
+
+	ScriptTable table;
+	mysql_field_seek(storedResult, 0);
+
+	int i = 0;
+	MYSQL_FIELD* field = nullptr;
+	for (field = mysql_fetch_field(storedResult), i = 0; field != 0; field = mysql_fetch_field(storedResult), ++i)
+	{
+		CReturnValue* value = nullptr;
+
+		if (storedRow[i] != nullptr)
+		{
+			switch (field->type)
+			{
+			case MYSQL_TYPE_DECIMAL:
+			case MYSQL_TYPE_NEWDECIMAL:
+			case MYSQL_TYPE_FLOAT:
+			case MYSQL_TYPE_DOUBLE:
+				value = new CReturnValue(atof(storedRow[i]));
+				break;
+			case MYSQL_TYPE_TINY:
+			case MYSQL_TYPE_SHORT:
+			case MYSQL_TYPE_LONG:
+			case MYSQL_TYPE_LONGLONG:
+			case MYSQL_TYPE_INT24:
+			case MYSQL_TYPE_YEAR:
+			case MYSQL_TYPE_BIT:
+				value = new CReturnValue(atoi(storedRow[i]));
+				break;
+			case MYSQL_TYPE_NULL:
+				value = new CReturnValue();
+				break;
+			default:
+			case MYSQL_TYPE_VARCHAR:
+			case MYSQL_TYPE_SET:
+			case MYSQL_TYPE_VAR_STRING:
+			case MYSQL_TYPE_STRING:
+			case MYSQL_TYPE_TIMESTAMP:
+			case MYSQL_TYPE_DATE:
+			case MYSQL_TYPE_TIME:
+			case MYSQL_TYPE_DATETIME:
+			case MYSQL_TYPE_NEWDATE:
+			case MYSQL_TYPE_TINY_BLOB:
+			case MYSQL_TYPE_MEDIUM_BLOB:
+			case MYSQL_TYPE_LONG_BLOB:
+			case MYSQL_TYPE_BLOB:
+				value = new CReturnValue(storedRow[i]);
+				break;
+			}
+		}
+		else
+			value = new CReturnValue();
+
+
+		table.Add(new CReturnValue(field->name), value);
+	}
+	return table.GetTable();
+}
+
 const char* MySQLHandle::fetchFieldFromRow(unsigned int fieldIndex)
 {
 	if (connection == NULL || storedResult == NULL || storedRow == NULL)
