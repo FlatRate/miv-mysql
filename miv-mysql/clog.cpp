@@ -35,7 +35,8 @@ void cLog::Initialise()
 		File = fopen("mysql_debug.log", "a");
 		if(File)
 		{
-			cLog::Print("Debug Started",true);
+			Print("MySQL Module Debug File.", false);
+			Print("Debug Started",true);
 		}
 		else
 		{
