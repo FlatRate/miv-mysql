@@ -23,6 +23,9 @@
         Description: Contains the class definitions for MySQL-Handle.h (see documentation of that file for more information).
 */
 
+#include <SDK.h>
+#include <CReturnValue.h>
+
 #include "mysql-handle.h"
 #include "cLog.h"
 

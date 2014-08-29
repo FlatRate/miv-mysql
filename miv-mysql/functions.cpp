@@ -195,7 +195,7 @@ SDK::ScriptArgument* plugin_mysql_fetch_row_assoc(SDK::ScriptArguments* pArugmen
 	
 	MySQLHandle* handle = HandleManager::GetHandle(id);
 
-	if (handle == NULL)
+	if(handle == NULL)
 	{
 		return new CReturnValue(-1);
 	}

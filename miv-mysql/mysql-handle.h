@@ -29,6 +29,8 @@
 #include <my_global.h>
 #include <mysql.h>
 
+#include <SDK.h>
+
 class MySQLHandle
 {
 public:
@@ -105,6 +107,11 @@ public:
                 Returns false when there are no more rows to retrieve.
         */
         bool fetchResultRow();
+		
+		/*
+			fetchResultRowAssoc
+		*/
+		SDK::ScriptArguments* fetchResultRowAssoc();
 
         /*
                 Returns the data from the currently stored row at the specified field index, if one
